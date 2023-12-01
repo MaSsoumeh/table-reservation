@@ -1,7 +1,12 @@
+import { Metadata } from "next";
 import Header from "./components/Header";
 import SearchRestaurantCard from "./components/SearchRestaurantCard";
 import SearchSideBar from "./components/SearchSideBar";
 
+export const metadata: Metadata = {
+  title: "Search | BookTable",
+  description: "Search for available table in your favorite restaurant",
+};
 const SearchPage = () => {
   return (
     <>

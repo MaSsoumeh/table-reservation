@@ -1,3 +1,4 @@
+import { Metadata } from "next";
 import Description from "./components/Description";
 import Images from "./components/Images";
 import Rating from "./components/Rating";
@@ -6,6 +7,10 @@ import RestaurantNavBar from "./components/RestaurantNavBar";
 import Reviews from "./components/Reviews";
 import Title from "./components/Title";
 
+export const metadata: Metadata = {
+  title: "Milestone Grill | BookTable",
+  description: "See details of the restaurant",
+};
 const Restaurant = () => {
   return (
     <>
