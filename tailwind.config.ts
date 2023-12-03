@@ -38,7 +38,7 @@ const config: Config = {
         light: "#CAD1C3",
         contrast: "#E7EED0",
       },
-      gray: "#5f6984",
+      gray: { dark: "#5f6984", light: "#D3D3D3" },
       red: "#AC2005",
     },
   },

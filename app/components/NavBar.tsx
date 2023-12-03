@@ -12,7 +12,7 @@ const NavBar = () => {
           <button className="bg-secondary text-white border p-1 px-4 rounded mr-3">
             Sign in
           </button>
-          <button className="bg-gray  text-white border p-1 px-4 rounded">
+          <button className="bg-gray-dark  text-white border p-1 px-4 rounded">
             Sign up
           </button>
         </div>

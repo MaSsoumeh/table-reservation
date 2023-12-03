@@ -8,8 +8,8 @@ interface Props {
 const RestaurantCard = (props: Props) => {
   const { main_img, name, price, cuisine, location, slug } = props.restaurant;
   return (
-    <Link href={`/restaurant/${slug}`}>
-      <div className="w-64 h-72 m-3 rounded overflow-hidden border border-mint-light cursor-pointer text-primary">
+    <Link href={`/restaurant/${slug}`} className="">
+      <div className="w-64 h-72 m-3 rounded overflow-hidden border border-gray-light hover:shadow-md hover:border-none cursor-pointer text-primary">
         <div className="relative h-36 w-full">
           <Image src={main_img} alt={`restaurant-${name}`} fill />
         </div>

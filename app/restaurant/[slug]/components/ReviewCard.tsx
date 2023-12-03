@@ -3,7 +3,7 @@ const ReviewCard = () => {
     <div className="border-b pb-7 mb-7">
       <div className="flex">
         <div className="w-1/6 flex flex-col items-center">
-          <div className="rounded-full bg-gray w-16 h-16 flex items-center justify-center">
+          <div className="rounded-full bg-gray-dark w-16 h-16 flex items-center justify-center">
             <h2 className="text-primary text-lg">MJ</h2>
           </div>
           <p className="text-center">Micheal Jordan</p>

@@ -13,8 +13,9 @@ const SearchBar = () => {
   };
 
   const handleSearch = () => {
-    if (location === "silly location") return;
-    router.push("/search");
+    if (!location) return;
+    router.push(`/search?city=${location}`);
+    setLocation("");
   };
 
   /**********/
@@ -28,7 +29,7 @@ const SearchBar = () => {
         onChange={onChangeSearchInput}
       />
       <button
-        className="rounded bg-mint-contrast px-9 py-2 text-primary"
+        className="rounded bg-mint-contrast hover:bg-mint-light px-9 py-2 text-primary"
         onClick={handleSearch}
       >
         Let&apos;s go

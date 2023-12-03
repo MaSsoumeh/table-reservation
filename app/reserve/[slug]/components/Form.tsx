@@ -31,7 +31,7 @@ const Form = () => {
         className="border rounded p-3 w-80 mb-4"
         placeholder="Requests (optional)"
       />
-      <button className="bg-mint-contrast w-full p-3 text-primary font-bold rounded disabled:bg-gray-300">
+      <button className="bg-mint-contrast w-full p-3 text-primary font-bold rounded disabled:bg-gray-light">
         Complete reservation
       </button>
       <p className="mt-4 text-sm">

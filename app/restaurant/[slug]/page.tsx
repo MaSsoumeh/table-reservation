@@ -6,13 +6,15 @@ import ReservationCard from "./components/ReservationCard";
 import RestaurantNavBar from "./components/RestaurantNavBar";
 import Reviews from "./components/Reviews";
 import Title from "./components/Title";
-import { PrismaClient } from "@prisma/client";
+import { prisma } from "@/app/lib/service";
 
+//metaData
 export const metadata: Metadata = {
   title: "Milestone Grill | BookTable",
   description: "See details of the restaurant",
 };
 
+//typeDefs
 type Props = {
   params: {
     slug: string;
@@ -27,7 +29,7 @@ type Restaurant = {
   slug: string;
 };
 
-const prisma = new PrismaClient();
+//fetchData
 const fetchRestaurant = async (slug: string): Promise<Restaurant> => {
   const restaurant = await prisma.restaurant.findUnique({
     where: {
@@ -47,13 +49,14 @@ const fetchRestaurant = async (slug: string): Promise<Restaurant> => {
   return restaurant;
 };
 
+//
 const Restaurant = async (props: Props) => {
   const restaurant = await fetchRestaurant(props.params.slug);
   const { name, description, images, slug } = restaurant;
   return (
     <>
       <div className="bg-white w-[70%] rounded p-3 shadow">
-        <RestaurantNavBar slug={slug} />
+        <RestaurantNavBar slug={slug} activeTab="overview" />
         <Title name={name} />
         <Rating />
         <Description description={description} />
