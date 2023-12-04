@@ -21,7 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <main className="bg-gray-dark min-h-screen w-scree text-primary">
+        <main className="bg-mint-light min-h-screen w-scree text-primary">
           <main className="max-w-screen-2xl m-auto bg-white">
             <NavBar />
             {children}
