@@ -1,21 +1,10 @@
-import { prisma } from "@/app/lib/service";
 import { makeFirstUpperCase } from "@/app/lib/utils";
-import { PRICE } from "@prisma/client";
+import { PRICE,Location,Cuisine } from "@prisma/client";
 import Link from "next/link";
 
-//fetchData
-const fetchLocations = () => {
-  return prisma.location.findMany();
-};
-
-const fetchCuisines = () => {
-  return prisma.cuisine.findMany();
-};
 
 //
-const SearchSideBar = async () => {
-  const locations = await fetchLocations();
-  const cuisines = await fetchCuisines();
+const SearchSideBar = ({locations,cuisines}:{locations:Location[],cuisines:Cuisine[]}) => {
 
   return (
     <div className="w-1/5 text-primary mr-4">
@@ -24,7 +13,12 @@ const SearchSideBar = async () => {
         {locations?.map((location) => (
           <Link
             key={location.id}
-            href={`/search?city=${location.name.toLowerCase()}`}
+            href={{
+              pathname:"/search",
+              query:{
+                city:location.name.toLowerCase()
+              }
+            }}
           >
             <p className="font-light text-reg cursor-pointer  hover:bg-mint-contrast">
               {makeFirstUpperCase(location.name)}
@@ -37,7 +31,12 @@ const SearchSideBar = async () => {
         {cuisines?.map((cuisine) => (
           <Link
             key={cuisine.id}
-            href={`/search?cuisine=${cuisine.name.toLowerCase()}`}
+            href={{
+              pathname:"/search",
+              query:{
+                cuisine:cuisine.name.toLowerCase()
+              }
+            }}
           >
             <p className="font-light text-reg cursor-pointer  hover:bg-mint-contrast">
               {makeFirstUpperCase(cuisine.name)}
@@ -48,17 +47,23 @@ const SearchSideBar = async () => {
       <div className="mt-3 pb-4 font-bold">
         <h1 className="mb-2">Price</h1>
         <div className="flex">
-          <Link href={`/search?price=${PRICE.CHEAP}`}>
+          <Link href={{pathname:"/search",query:{
+            price:PRICE.CHEAP
+          }}}>
             <button className="border w-full text-reg font-light rounded-l p-2 cursor-pointer hover:bg-mint-contrast">
               $$
             </button>
           </Link>
-          <Link href={`/search?price=${PRICE.REGULAR}`}>
+          <Link href={{pathname:"/search",query:{
+            price:PRICE.REGULAR
+          }}}>
             <button className="border-r border-t border-b w-full text-reg font-light p-2 cursor-pointer  hover:bg-mint-contrast">
               $$$
             </button>
           </Link>
-          <Link href={`/search?price=${PRICE.EXPENSIVE}`}>
+          <Link href={{pathname:"/search",query:{
+            price:PRICE.EXPENSIVE
+          }}}>
             <button className="border-r border-t border-b w-full text-reg font-light p-2 rounded-r cursor-pointer  hover:bg-mint-contrast">
               $$$$
             </button>

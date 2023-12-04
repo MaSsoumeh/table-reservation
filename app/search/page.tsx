@@ -80,8 +80,19 @@ const fetchRestaurantsByPrice = (price: PRICE | undefined) => {
   });
 };
 
+const fetchLocations = () => {
+  return prisma.location.findMany();
+};
+
+const fetchCuisines = () => {
+  return prisma.cuisine.findMany();
+};
+
 //
 const SearchPage = async ({ searchParams }: SearchParams) => {
+  const locations = await fetchLocations();
+  const cuisines = await fetchCuisines();
+
   const restaurants = searchParams.hasOwnProperty("city")
     ? await fetchRestaurantsByCity(searchParams.city?.toLocaleLowerCase())
     : searchParams.hasOwnProperty("cuisine")
@@ -94,7 +105,7 @@ const SearchPage = async ({ searchParams }: SearchParams) => {
     <>
       <Header />
       <div className="flex py-4 m-auto w-2/3 justify-between items-start">
-        <SearchSideBar />
+        <SearchSideBar  locations={locations} cuisines={cuisines}/>
         <div className="w-5/6">
           {restaurants.length ? (
             restaurants?.map((restaurant) => (
