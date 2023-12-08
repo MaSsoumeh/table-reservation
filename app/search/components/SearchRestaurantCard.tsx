@@ -1,5 +1,7 @@
 import Price from "@/app/components/Price";
-import { Cuisine, Location, PRICE } from "@prisma/client";
+import RatingStars from "@/app/components/RatingStars";
+import { calculateRatingAverage, ratingText } from "@/app/lib/utils";
+import { Cuisine, Location, PRICE, Review } from "@prisma/client";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -10,10 +12,13 @@ type Restaurant = {
   price: PRICE;
   cuisine: Cuisine;
   location: Location;
+  reviews: Review[];
 };
 
 const SearchRestaurantCard = ({ restaurant }: { restaurant: Restaurant }) => {
-  const { name, slug, main_img, price, cuisine, location } = restaurant;
+  const { name, slug, main_img, price, cuisine, location, reviews } =
+    restaurant;
+  const averageRating = calculateRatingAverage(reviews);
 
   return (
     <div className="border-b flex pb-5 border-mint-light">
@@ -24,8 +29,8 @@ const SearchRestaurantCard = ({ restaurant }: { restaurant: Restaurant }) => {
       <div className="pl-5 text-primary">
         <h2 className="text-lg">{name}</h2>
         <div className="flex items-start">
-          <div className="flex mb-2">*****</div>
-          <p className="ml-2 text-sm">Awesome</p>
+          <RatingStars rating={averageRating} />
+          <p className="ml-2 text-sm">{ratingText(averageRating)}</p>
         </div>
         <div className="mb-9">
           <div className="font-light flex text-reg">

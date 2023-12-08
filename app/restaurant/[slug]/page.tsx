@@ -7,6 +7,7 @@ import RestaurantNavBar from "./components/RestaurantNavBar";
 import Reviews from "./components/Reviews";
 import Title from "./components/Title";
 import { prisma } from "@/app/lib/service";
+import { Review } from "@prisma/client";
 
 //metaData
 export const metadata: Metadata = {
@@ -27,6 +28,7 @@ type Restaurant = {
   images: string[];
   description: string;
   slug: string;
+  reviews: Review[];
 };
 
 //fetchData
@@ -41,6 +43,7 @@ const fetchRestaurant = async (slug: string): Promise<Restaurant> => {
       images: true,
       description: true,
       slug: true,
+      reviews: true,
     },
   });
   if (!restaurant) {
@@ -52,16 +55,16 @@ const fetchRestaurant = async (slug: string): Promise<Restaurant> => {
 //
 const Restaurant = async (props: Props) => {
   const restaurant = await fetchRestaurant(props.params.slug);
-  const { name, description, images, slug } = restaurant;
+  const { name, description, images, slug, reviews } = restaurant;
   return (
     <>
       <div className="bg-white w-[70%] rounded p-3 shadow">
         <RestaurantNavBar slug={slug} activeTab="overview" />
         <Title name={name} />
-        <Rating />
+        <Rating reviews={reviews} />
         <Description description={description} />
         <Images images={images} />
-        <Reviews />
+        <Reviews reviews={reviews} />
       </div>
       <div className="w-[27%] relative text-reg">
         <ReservationCard />

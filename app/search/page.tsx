@@ -27,6 +27,7 @@ const select = {
   main_img: true,
   cuisine: true,
   location: true,
+  reviews: true,
 };
 const fetchRestaurantsBySearchParams = (searchParams: SearchParams) => {
   const conditions: any = {};
