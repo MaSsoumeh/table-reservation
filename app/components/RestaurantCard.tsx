@@ -11,14 +11,14 @@ const RestaurantCard = (props: Props) => {
   const { main_img, name, price, cuisine, location, slug, reviews } =
     props.restaurant;
   return (
-    <Link href={`/restaurant/${slug}`} className="">
+    <Link href={`/restaurant/${slug}`}>
       <div className="w-64 h-72 m-3 rounded overflow-hidden shadow-md hover:shadow-xl border-none cursor-pointer text-primary">
         <div className="relative h-36 w-full">
           <Image src={main_img} alt={`restaurant-${name}`} fill />
         </div>
         <div className="p-2">
           <h3 className="font-bold text-lg mb-2 text-primary">{name}</h3>
-          <div className="flex items-start">
+          <div className="flex items-center">
             <RatingStars rating={calculateRatingAverage(reviews)} />
             <p className="ml-2">
               {reviews.length ?? 0} {`review${reviews.length > 1 ? "s" : ""}`}

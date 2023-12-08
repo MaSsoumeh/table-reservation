@@ -1,9 +1,9 @@
+import { PRICE } from "@prisma/client";
 import { Metadata } from "next";
+import { prisma } from "../lib/service";
 import Header from "./components/Header";
 import SearchRestaurantCard from "./components/SearchRestaurantCard";
 import SearchSideBar from "./components/SearchSideBar";
-import { prisma } from "../lib/service";
-import { Cuisine, Location, PRICE } from "@prisma/client";
 
 //metaData
 export const metadata: Metadata = {
