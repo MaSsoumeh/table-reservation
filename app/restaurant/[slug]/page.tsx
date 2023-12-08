@@ -1,4 +1,7 @@
+import { prisma } from "@/app/lib/service";
+import { Review } from "@prisma/client";
 import { Metadata } from "next";
+import { notFound } from "next/navigation";
 import Description from "./components/Description";
 import Images from "./components/Images";
 import Rating from "./components/Rating";
@@ -6,8 +9,6 @@ import ReservationCard from "./components/ReservationCard";
 import RestaurantNavBar from "./components/RestaurantNavBar";
 import Reviews from "./components/Reviews";
 import Title from "./components/Title";
-import { prisma } from "@/app/lib/service";
-import { Review } from "@prisma/client";
 
 //metaData
 export const metadata: Metadata = {
@@ -47,7 +48,7 @@ const fetchRestaurant = async (slug: string): Promise<Restaurant> => {
     },
   });
   if (!restaurant) {
-    throw new Error();
+    notFound();
   }
   return restaurant;
 };
